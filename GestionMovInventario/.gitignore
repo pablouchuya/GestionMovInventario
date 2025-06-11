@@ -1,0 +1,43 @@
+## Ignore para proyectos Visual Studio y ASP.NET MVC
+## Generado automáticamente
+
+# Archivos temporales de Visual Studio
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+# Directorios binarios
+bin/
+obj/
+TestResults/
+packages/
+*.nupkg
+
+# Configuración de IIS Express
+*.vspscc
+*.vssscc
+*.dbmdl
+*.dbproj.schemaview
+
+# Archivos generados por publicación
+_PublishedWebsites/
+
+# Archivos sensibles
+appsettings.*.json
+web.config.transform
+*.Key
+
+# Otros entornos
+.env
+*.swp
+*.bak
+
+# Rider / JetBrains
+.idea/
+*.sln.ide
+
+# Otros
+*.orig
+*.rej

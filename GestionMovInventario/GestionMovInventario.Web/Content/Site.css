@@ -1,0 +1,18 @@
+﻿body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+input[readonly] {
+    background-color: #e9ecef !important; /* Gris claro para readonly */
+    color: #6c757d !important; /* Texto más apagado */
+    cursor: not-allowed;
+}
+
+input:not([readonly]) {
+    background-color: #ffffff !important; /* Blanco cuando editable */
+    color: #212529 !important;
+}

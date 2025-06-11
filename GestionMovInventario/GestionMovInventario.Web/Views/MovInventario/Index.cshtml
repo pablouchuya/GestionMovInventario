@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "Movimientos de Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2>Gestión de Inventario</h2>
+
+    <div class="row mb-3">
+        <div class="col-md-2">
+            <label>Fecha Inicio</label>
+            <input type="date" class="form-control" id="filtroFechaInicio" />
+        </div>
+        <div class="col-md-2">
+            <label>Fecha Fin</label>
+            <input type="date" class="form-control" id="filtroFechaFin" />
+        </div>
+        <div class="col-md-3">
+            <label>Tipo Movimiento</label>
+            <select class="form-control" id="filtroTipoMovimiento">
+                <option value="">-- Seleccione --</option>
+                <option value="01">Entrada</option>
+                <option value="02">Salida</option>
+                <option value="03">Traslado</option>
+                <option value="04">Otros</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label>Nro. Documento</label>
+            <input type="text" class="form-control" id="filtroNroDocumento" placeholder="Número de Documento" />
+        </div>
+        <div class="col-md-2 d-flex align-items-end justify-content-end gap-2">
+            <button class="btn btn-primary" id="btnBuscar">
+                <i class="bi bi-search"></i>
+            </button>
+            <button class="btn btn-secondary" id="btnLimpiarFiltros">
+                <i class="bi bi-x-circle"></i>
+            </button>
+        </div>
+    </div>
+
+    <button class="btn btn-success mb-3" id="btnNuevo">
+        <i class="bi bi-plus-circle"></i> Nuevo Movimiento
+    </button>
+
+    <table class="table table-bordered table-hover" id="tablaMovimientos">
+        <thead class="thead-dark">
+            <tr>
+                <th>Cod. CIA</th>
+                <th>Compañia Venta 3</th>
+                <th>Almacen Venta</th>
+                <th>Tipo Movimiento</th>
+                <th>Tipo Documento</th>
+                <th>Nro. Documento</th>
+                <th>Cod. Item 2</th>
+                <th>Proveedor</th>
+                <th>Almacén Destino</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="modalMovInventario" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="modalLabel">Movimiento de Inventario</h5>
+            </div>
+
+            <div class="modal-body">
+                <form id="formMovimiento">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Cod CIA</label>
+                            <input type="text" class="form-control" id="txtCod_CIA" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Compañía Venta</label>
+                            <input type="text" class="form-control" id="txtCompania_Venta_3" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Almacén Venta</label>
+                            <input type="text" class="form-control" id="txtAlmacen_Venta" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Tipo Movimiento</label>
+                            <select class="form-control" id="txtTipo_Movimiento">
+                                <option value="">-- Seleccione --</option>
+                                <option value="01">Entrada</option>
+                                <option value="02">Salida</option>
+                                <option value="03">Traslado</option>
+                                <option value="04">Otros</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Tipo Documento</label>
+                            <select class="form-control" id="txtTipo_Documento">
+                                <option value="">-- Seleccione --</option>
+                                <option value="FA">Factura</option>
+                                <option value="BO">Boleta</option>
+                                <option value="NC">Nota Crédito</option>
+                                <option value="ND">Nota Débito</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Nro Documento</label>
+                            <input type="text" class="form-control" id="txtNro_Documento" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Cod Item</label>
+                            <input type="text" class="form-control" id="txtCod_Item_2" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Proveedor</label>
+                            <input type="text" class="form-control" id="txtProveedor" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Almacén Destino</label>
+                            <input type="text" class="form-control" id="txtAlmacen_Destino" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Cantidad</label>
+                            <input type="number" class="form-control" id="txtCantidad" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Doc Ref 1</label>
+                            <input type="text" class="form-control" id="txtDoc_Ref_1" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Doc Ref 2</label>
+                            <input type="text" class="form-control" id="txtDoc_Ref_2" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Doc Ref 3</label>
+                            <input type="text" class="form-control" id="txtDoc_Ref_3" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Doc Ref 4</label>
+                            <input type="text" class="form-control" id="txtDoc_Ref_4" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Doc Ref 5</label>
+                            <input type="text" class="form-control" id="txtDoc_Ref_5" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Fecha Transacción</label>
+                            <input type="date" class="form-control" id="txtFecha_Transaccion" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnGuardar" type="button" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Guardar
+                </button>
+                <button id="btnActualizar" type="button" class="btn btn-primary" style="display:none;">
+                    <i class="bi bi-pencil-square"></i> Actualizar
+                </button>
+                <button type="button" class="btn btn-secondary" id="btnCerraModal"> 
+                    <i class="bi bi-x"></i> Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿@model GestionMovInventario.Models.MovInventario
+@{
+    ViewBag.Title = "Eliminar Movimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Eliminar Movimiento</h2>
+<h3>¿Estás seguro de que deseas eliminar este registro?</h3>
+<div>
+    <h4>Movimiento</h4>
+    <dl class="dl-horizontal">
+        <dt>Código</dt>
+        <dd>@Html.DisplayFor(model => model.COD_CIA)</dd>
+        <dt>Documento</dt>
+        <dd>@Html.DisplayFor(model => model.NRO_DOCUMENTO)</dd>
+    </dl>
+
+    @using (Html.BeginForm("Delete", "MovInventario", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Cod_CIA)
+        @Html.HiddenFor(model => model.Compania_Venta_3)
+        @Html.HiddenFor(model => model.Almacen_Venta)
+        @Html.HiddenFor(model => model.Tipo_Movimiento)
+        @Html.HiddenFor(model => model.Tipo_Documento)
+        @Html.HiddenFor(model => model.Nro_Documento)
+        @Html.HiddenFor(model => model.Cod_Item_2)
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a href="@Url.Action("Index")" class="btn btn-default">Cancelar</a>
+    }
+</div>
